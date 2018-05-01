@@ -2,7 +2,9 @@
 
 namespace app\index\controller;
 
+use app\index\utils\Status;
 use think\Controller;
+use app\index\service\UserService;
 
 /**
  * 登录控制器
@@ -10,6 +12,14 @@ use think\Controller;
  */
 class LoginController extends Controller
 {
+    private $userService;
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->userService = UserService::getInstance();
+    }
+
     /**
      * 登录首页
      */
@@ -23,8 +33,13 @@ class LoginController extends Controller
      */
     public function login()
     {
-        // 获取用户名和密码
         $username = $this->request->post('username');
         $password = $this->request->post('password');
+        $result = $this->userService->login($username, $password);
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'index/index');
+        } else {
+            $this->error($result['info'], 'login/index');
+        }
     }
 }
