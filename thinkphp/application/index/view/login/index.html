@@ -32,14 +32,14 @@
                     <h2 class="align-content white">教学计划管理平台</h2>
                 </div>
                 <div class="login-form">
-                    <form>
+                    <form action="{:url('login/login')}" method="post">
                         <div class="form-group">
                             <label>用户名</label>
-                            <input type="email" class="form-control" placeholder="单击此处键入用户名">
+                            <input type="text" name="username" class="form-control" placeholder="此处键入用户名">
                         </div>
                         <div class="form-group">
                             <label>密码</label>
-                            <input type="password" class="form-control" placeholder="单击此处键入密码">
+                            <input type="password" name="password" class="form-control" placeholder="此处键入密码">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -48,7 +48,6 @@
                             <label class="pull-right">
                                 <a href="#">忘记密码?</a>
                             </label>
-
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
                         <div class="register-link m-t-15 text-center margin-top">

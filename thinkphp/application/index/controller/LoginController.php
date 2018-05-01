@@ -10,8 +10,21 @@ use think\Controller;
  */
 class LoginController extends Controller
 {
-    public function login()
+    /**
+     * 登录首页
+     */
+    public function index()
     {
         return $this->fetch();
+    }
+
+    /**
+     * 用户登录
+     */
+    public function login()
+    {
+        // 获取用户名和密码
+        $username = $this->request->post('username');
+        $password = $this->request->post('password');
     }
 }
