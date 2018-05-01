@@ -14,6 +14,7 @@
                         <strong class="card-title">专业管理</strong>
                     </div>
                     <div class="card-body">
+                        <a class="btn btn-sm btn-primary" href="{:url('specialty/add')}"><i class="fa fa-plus"></i>&nbsp;新增专业</a>
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -28,8 +29,8 @@
                                 <td>{$key}</td>
                                 <td>{$_specialty->name}</td>
                                 <td>
-                                    <a class="btn btn-sm btn-warning" href=""><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
-                                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                                    <a class="btn btn-sm btn-warning" href="{:url('specialty/edit', ['id' => $_specialty->id])}"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+                                    <a class="btn btn-sm btn-danger" href="{:url('specialty/delete', ['id' => $_specialty->id])}"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
                                 </td>
                             </tr>
                             {/volist}

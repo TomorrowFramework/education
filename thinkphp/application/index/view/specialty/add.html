@@ -1,0 +1,35 @@
+{extend name="base" /}
+
+{block name="title}
+专业管理
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">专业管理</strong>
+                    </div>
+                    <div class="card-body">
+                        {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+                        <form action="{:url($action, ['id' => $specialty->id])}" method="post">
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">专业名称</label>
+                                <input name="name" type="text" class="form-control valid" value="{$specialty->name}">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                    <span id="payment-button-amount">保存</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
