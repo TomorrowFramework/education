@@ -3,28 +3,28 @@
 namespace app\index\controller;
 
 use app\index\utils\Status;
-use think\Controller;
-use app\index\service\UserService;
 
 /**
  * 登录控制器
  * @author zhangxishuo
  */
-class LoginController extends Controller
+class LoginController extends BaseController
 {
-    private $userService;
-
-    function __construct()
-    {
-        parent::__construct();
-        $this->userService = UserService::getInstance();
-    }
-
     /**
      * 登录首页
      */
     public function index()
     {
+        return $this->fetch();
+    }
+
+    /**
+     * 注册首页
+     */
+    public function register()
+    {
+        $specialty = $this->specialtyService->getAllSpecialty();
+        $this->assign('specialty', $specialty);
         return $this->fetch();
     }
 
@@ -40,6 +40,17 @@ class LoginController extends Controller
             $this->success($result['info'], 'index/index');
         } else {
             $this->error($result['info'], 'login/index');
+        }
+    }
+
+    /**
+     * 用户注销
+     */
+    public function logout()
+    {
+        $result = $this->userService->logout();
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'login/index');
         }
     }
 }

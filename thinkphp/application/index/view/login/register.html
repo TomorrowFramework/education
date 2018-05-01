@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+
+    <link rel="stylesheet" href="__PUBLIC__/css/normalize.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/themify-icons.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/flag-icon.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="__PUBLIC__/scss/style.css">
+
+    <style>
+        .white {
+            color: white;
+        }
+        .margin-top {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body class="bg-dark">
+
+<div class="sufee-login d-flex align-content-center flex-wrap">
+    <div class="container">
+        <div class="login-content">
+
+            <div class="login-logo">
+                <h2 class="align-content white">教学计划管理平台</h2>
+            </div>
+            <div class="login-form">
+                <form action="{:url('login/login')}" method="post">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <label>职业</label>
+                        <select name="profession" id="profession" class="form-control" onchange="watchProfession()">
+                            <option value="0">教师</option>
+                            <option value="-1">学生</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" name="name" class="form-control" placeholder="姓名">
+                    </div>
+                    <div class="form-group" id="specialty">
+                        <label>专业</label>
+                        <select name="specialty" class="form-control">
+                            {volist name="specialty" id="_specialty"}
+                                <option value="{$_specialty->id}">{$_specialty->name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                    <div class="register-link m-t-15 text-center margin-top">
+                        <p>已有账号 ? <a href="{:url('login/index')}"> 登录</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="__PUBLIC__/js/popper.min.js"></script>
+<script src="__PUBLIC__/js/plugins.js"></script>
+<script src="__PUBLIC__/js/main.js"></script>
+
+<script>
+    var watchProfession = function() {
+        var profession    = document.getElementById('profession');
+        var specialty     = document.getElementById('specialty');
+        var selectedIndex = profession.selectedIndex;
+        var value = profession.options[selectedIndex].value;
+        if (value == 0) {
+            specialty.style.display = 'none';
+        } else if (value == -1) {
+            specialty.style.display = 'block';
+        }
+    };
+
+    watchProfession();
+</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
@@ -35,23 +35,20 @@
                     <form action="{:url('login/login')}" method="post">
                         <div class="form-group">
                             <label>用户名</label>
-                            <input type="text" name="username" class="form-control" placeholder="此处键入用户名">
+                            <input type="text" name="username" class="form-control" placeholder="用户名">
                         </div>
                         <div class="form-group">
                             <label>密码</label>
-                            <input type="password" name="password" class="form-control" placeholder="此处键入密码">
+                            <input type="password" name="password" class="form-control" placeholder="密码">
                         </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Remember Me
                             </label>
-                            <label class="pull-right">
-                                <a href="#">忘记密码?</a>
-                            </label>
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
                         <div class="register-link m-t-15 text-center margin-top">
-                            <p>还没有账号 ? <a href="#"> 注册</a></p>
+                            <p>还没有账号 ? <a href="{:url('login/register')}"> 注册</a></p>
                         </div>
                     </form>
                 </div>
