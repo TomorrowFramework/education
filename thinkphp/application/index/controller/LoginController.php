@@ -53,4 +53,33 @@ class LoginController extends BaseController
             $this->success($result['info'], 'login/index');
         }
     }
+
+    /**
+     * 用户注册
+     */
+    public function enroll()
+    {
+        $username   = $this->request->post('username');
+        $password   = $this->request->post('password');
+        $name       = $this->request->post('name');
+        $profession = $this->request->post('profession');
+        $id         = null;
+
+        if ($profession == 0) {
+            // 教师
+            $teacher = $this->teacherService->addTeacher($name);
+            $id = $teacher->id;
+        } else if ($profession == -1) {
+            // 学生
+            $specialtyId = $this->request->post('specialty');
+            $student = $this->studentService->addStudent($name, $specialtyId);
+            $id = $student->id;
+        }
+
+        $result = $this->userService->addUser($username, $password, $profession, $id);
+
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'login/index');
+        }
+    }
 }

@@ -67,4 +67,23 @@ class UserService implements Service
             return $user;
         }
     }
+
+    /**
+     * 添加用户
+     * @param $username
+     * @param $password
+     * @param $power
+     * @param $relationId
+     * @return array
+     */
+    public function addUser($username, $password, $power, $relationId)
+    {
+        $user = new User();
+        $user->username = $username;
+        $user->password = $password;
+        $user->power    = $power;
+        $user->relation_id = $relationId;
+        $user->save();
+        return Status::getSuccessResult('注册成功');
+    }
 }
