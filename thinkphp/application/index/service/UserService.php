@@ -21,12 +21,6 @@ class UserService implements Service
         return self::$instance;
     }
 
-    /**
-     * 用户登录
-     * @param $username
-     * @param $password
-     * @return array
-     */
     public function login($username, $password)
     {
         $map = [];
@@ -42,20 +36,12 @@ class UserService implements Service
         }
     }
 
-    /**
-     * 用户注销
-     * @return array
-     */
     public function logout()
     {
         session('userId', null);
         return Status::getSuccessResult('注销成功');
     }
 
-    /**
-     * 获取当前登录用户
-     * @return User|static
-     */
     public function getCurrentLoginUser()
     {
         $id = session('userId');
@@ -68,14 +54,6 @@ class UserService implements Service
         }
     }
 
-    /**
-     * 添加用户
-     * @param $username
-     * @param $password
-     * @param $power
-     * @param $relationId
-     * @return array
-     */
     public function addUser($username, $password, $power, $relationId)
     {
         $user = new User();
@@ -83,7 +61,10 @@ class UserService implements Service
         $user->password = $password;
         $user->power    = $power;
         $user->relation_id = $relationId;
-        $user->save();
-        return Status::getSuccessResult('注册成功');
+        if (false === $user->save()) {
+            return Status::getErrorResult('注册失败');
+        } else {
+            return Status::getSuccessResult('注册成功');
+        }
     }
 }

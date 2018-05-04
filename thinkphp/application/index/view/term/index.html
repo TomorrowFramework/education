@@ -1,0 +1,52 @@
+{extend name="base" /}
+
+{block name="title}
+专业管理
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">学期管理</strong>
+                    </div>
+                    <div class="card-body">
+                        <a class="btn btn-sm btn-primary" href="{:url('term/add')}"><i class="fa fa-plus"></i>&nbsp;新增学期</a>
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>名称</th>
+                                <th>起始时间</th>
+                                <th>结束时间</th>
+                                <th>是否当前学期</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="terms" id="term" key="key"}
+                            <tr>
+                                <td>{$key}</td>
+                                <td>{$term->name}</td>
+                                <td>{$term->start_time}</td>
+                                <td>{$term->end_time}</td>
+                                <td>{eq name="$term->is_current" value="1"}是{else /}否{/eq}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="{:url('term/active', ['id' => $term->id])}"><i class="fa fa-star-o"></i>&nbsp;设置为当前学期</a>
+                                    <a class="btn btn-sm btn-warning" href="{:url('term/edit', ['id' => $term->id])}"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+                                    <a class="btn btn-sm btn-danger" href="{:url('term/delete', ['id' => $term->id])}"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                                </td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

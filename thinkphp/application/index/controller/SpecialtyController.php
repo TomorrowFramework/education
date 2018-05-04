@@ -32,6 +32,8 @@ class SpecialtyController extends BaseController
         $result = $this->specialtyService->save($name);
         if (Status::isSuccess($result['status'])) {
             $this->success($result['info'], 'specialty/index');
+        } else {
+            $this->error($result['info']);
         }
     }
 
@@ -50,6 +52,8 @@ class SpecialtyController extends BaseController
         $result = $this->specialtyService->update($id, $name);
         if (Status::isSuccess($result['status'])) {
             $this->success($result['info'], 'specialty/index');
+        } else {
+            $this->error($result['info']);
         }
     }
 
@@ -59,6 +63,8 @@ class SpecialtyController extends BaseController
         $result = $this->specialtyService->delete($id);
         if (Status::isSuccess($result['status'])) {
             $this->success($result['info'], 'specialty/index');
+        } else {
+            $this->error($result['info']);
         }
     }
 }

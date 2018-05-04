@@ -20,10 +20,6 @@ class SpecialtyService implements Service
         return self::$instance;
     }
 
-    /**
-     * 获取所有专业
-     * @return false|static[]
-     */
     public function getAllSpecialty()
     {
         return Specialty::all();
@@ -33,22 +29,31 @@ class SpecialtyService implements Service
     {
         $specialty = new Specialty();
         $specialty->name = $name;
-        $specialty->save();
-        return Status::getSuccessResult("保存成功");
+        if (false === $specialty->save()) {
+            return Status::getErrorResult('保存失败');
+        } else {
+            return Status::getSuccessResult("保存成功");
+        }
     }
 
     public function update($id, $name)
     {
         $specialty = Specialty::get($id);
         $specialty->name = $name;
-        $specialty->save();
-        return Status::getSuccessResult("更新成功");
+        if (false === $specialty->save()) {
+            return Status::getErrorResult('更新失败');
+        } else {
+            return Status::getSuccessResult("更新成功");
+        }
     }
 
     public function delete($id)
     {
         $specialty = Specialty::get($id);
-        $specialty->delete();
-        return Status::getSuccessResult("删除成功");
+        if (!$specialty->delete()) {
+            return Status::getErrorResult('删除失败');
+        } else {
+            return Status::getSuccessResult("删除成功");
+        }
     }
 }
