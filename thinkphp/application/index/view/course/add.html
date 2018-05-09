@@ -1,0 +1,63 @@
+{extend name="base" /}
+
+{block name="title}
+课程管理
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">课程管理</strong>
+                    </div>
+                    <div class="card-body">
+                        {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+                        <form action="{:url($action, ['id' => $course->id])}" method="post">
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">名称</label>
+                                <input name="name" type="text" class="form-control valid" value="{$course->name}">
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">课程学分</label>
+                                <input name="courseCredit" type="text" class="form-control valid" value="{$course->course_credit}">
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">实验学分</label>
+                                <input name="experimentCredit" type="text" class="form-control valid" value="{$course->experiment_credit}">
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">考核方式</label>
+                                <input name="assessment" type="text" class="form-control valid" value="{$course->assessment}">
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">上课学期</label>
+                                <select name="termId" class="form-control">
+                                    {volist name="terms" id="term"}
+                                    <option value="{$term->id}">{$term->name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">授课教师</label>
+                                <select name="teacherId" class="form-control">
+                                    {volist name="teachers" id="teacher"}
+                                    <option value="{$teacher->id}">{$teacher->name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                    <span id="payment-button-amount">保存</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

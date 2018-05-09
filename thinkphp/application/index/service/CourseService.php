@@ -2,6 +2,8 @@
 
 namespace app\index\service;
 
+use app\index\model\Course;
+use app\index\utils\Status;
 
 class CourseService implements Service
 {
@@ -13,5 +15,21 @@ class CourseService implements Service
             self::$instance = new self();
         }
         return self::$instance;
+    }
+
+    public function save($name, $courseCredit, $experimentCredit, $assessment, $termId, $teacherId)
+    {
+        $course = new Course();
+        $course->name = $name;
+        $course->course_credit = $courseCredit;
+        $course->experiment_credit = $experimentCredit;
+        $course->assessment = $assessment;
+        $course->term_id = $termId;
+        $course->teacher_id = $teacherId;
+        if (false === $course->save()) {
+            return Status::getErrorResult('保存失败');
+        } else {
+            return Status::getSuccessResult('保存成功');
+        }
     }
 }

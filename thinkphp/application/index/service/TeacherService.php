@@ -26,4 +26,9 @@ class TeacherService implements Service
         $teacher->save();
         return $teacher;
     }
+
+    public function getAllTeachers()
+    {
+        return Teacher::all();
+    }
 }
