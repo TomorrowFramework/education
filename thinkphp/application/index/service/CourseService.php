@@ -37,4 +37,20 @@ class CourseService implements Service
             return Status::getSuccessResult('保存成功');
         }
     }
+
+    public function update($id, $name, $courseCredit, $experimentCredit, $assessment, $termId, $teacherId)
+    {
+        $course = Course::get($id);
+        $course->name = $name;
+        $course->course_credit = $courseCredit;
+        $course->experiment_credit = $experimentCredit;
+        $course->assessment = $assessment;
+        $course->term_id = $termId;
+        $course->teacher_id = $teacherId;
+        if (false === $course->save()) {
+            return Status::getErrorResult('更新失败');
+        } else {
+            return Status::getSuccessResult('更新成功');
+        }
+    }
 }

@@ -41,6 +41,7 @@ class CourseController extends BaseController
         $assessment = $this->request->post('assessment');
         $termId = $this->request->post('termId');
         $teacherId = $this->request->post('teacherId');
+
         $result = $this->courseService->save($name, $courseCredit, $experimentCredit, $assessment, $termId, $teacherId);
         if (Status::isSuccess($result['status'])) {
             $this->success($result['info'], 'course/index');
@@ -62,5 +63,23 @@ class CourseController extends BaseController
         $this->assign('teachers', $teachers);
 
         return $this->fetch('course/add');
+    }
+
+    public function update()
+    {
+        $id = $this->request->param('id');
+        $name = $this->request->post('name');
+        $courseCredit = $this->request->post('courseCredit');
+        $experimentCredit = $this->request->post('experimentCredit');
+        $assessment = $this->request->post('assessment');
+        $termId = $this->request->post('termId');
+        $teacherId = $this->request->post('teacherId');
+
+        $result = $this->courseService->update($id, $name, $courseCredit, $experimentCredit, $assessment, $termId, $teacherId);
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'course/index');
+        } else {
+            $this->error($result['info']);
+        }
     }
 }
