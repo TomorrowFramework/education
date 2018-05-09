@@ -1,0 +1,37 @@
+{extend name="base" /}
+
+{block name="title}
+培养计划管理
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">培养计划管理</strong>
+                    </div>
+                    <div class="card-body">
+                        <a class="btn btn-sm btn-primary" href="{:url('train/add')}"><i class="fa fa-plus"></i>&nbsp;新增培养计划</a>
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>名称</th>
+                                <th>专业</th>
+                                <th>课程</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
