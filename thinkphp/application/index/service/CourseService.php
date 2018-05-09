@@ -53,4 +53,14 @@ class CourseService implements Service
             return Status::getSuccessResult('更新成功');
         }
     }
+
+    public function delete($id)
+    {
+        $course = Course::get($id);
+        if (!$course->delete()) {
+            return Status::getErrorResult('删除失败');
+        } else {
+            return Status::getSuccessResult("删除成功");
+        }
+    }
 }

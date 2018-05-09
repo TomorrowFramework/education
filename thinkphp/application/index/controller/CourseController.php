@@ -82,4 +82,16 @@ class CourseController extends BaseController
             $this->error($result['info']);
         }
     }
+
+    public function delete()
+    {
+        $id = $this->request->param('id');
+
+        $result = $this->courseService->delete($id);
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'course/index');
+        } else {
+            $this->error($result['info']);
+        }
+    }
 }
