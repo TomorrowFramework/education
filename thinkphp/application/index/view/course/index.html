@@ -29,6 +29,21 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {volist name="courses" id="course" key="key"}
+                            <tr>
+                                <td>{$key}</td>
+                                <td>{$course->name}</td>
+                                <td>{$course->course_credit}</td>
+                                <td>{$course->experiment_credit}</td>
+                                <td>{$course->assessment}</td>
+                                <td>{$course->term->name}</td>
+                                <td>{$course->teacher->name}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-warning" href="{:url('course/edit', ['id' => $course->id])}"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+                                    <a class="btn btn-sm btn-danger" href="{:url('course/delete', ['id' => $course->id])}"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                                </td>
+                            </tr>
+                            {/volist}
                             </tbody>
                         </table>
                     </div>

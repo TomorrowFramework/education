@@ -17,6 +17,11 @@ class CourseService implements Service
         return self::$instance;
     }
 
+    public function getAllCourse()
+    {
+        return Course::all();
+    }
+
     public function save($name, $courseCredit, $experimentCredit, $assessment, $termId, $teacherId)
     {
         $course = new Course();

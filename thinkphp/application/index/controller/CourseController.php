@@ -9,6 +9,8 @@ class CourseController extends BaseController
 {
     public function index()
     {
+        $courses = $this->courseService->getAllCourse();
+        $this->assign('courses', $courses);
         return $this->fetch();
     }
 
