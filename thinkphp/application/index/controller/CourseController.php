@@ -48,4 +48,19 @@ class CourseController extends BaseController
             $this->error($result['info']);
         }
     }
+
+    public function edit()
+    {
+        $id = $this->request->param('id');
+        $course = Course::get($id);
+        $this->assign('course', $course);
+
+        $terms = $this->termService->getAllTerm();
+        $this->assign('terms', $terms);
+
+        $teachers = $this->teacherService->getAllTeachers();
+        $this->assign('teachers', $teachers);
+
+        return $this->fetch('course/add');
+    }
 }
