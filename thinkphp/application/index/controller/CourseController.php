@@ -22,6 +22,8 @@ class CourseController extends BaseController
         $course->course_credit = '';
         $course->experiment_credit = '';
         $course->assessment = '';
+        $course->term_id = 0;
+        $course->teacher_id = 0;
         $this->assign('course', $course);
 
         $terms = $this->termService->getAllTerm();

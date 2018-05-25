@@ -36,7 +36,7 @@
                                 <label class="control-label mb-1">上课学期</label>
                                 <select name="termId" class="form-control">
                                     {volist name="terms" id="term"}
-                                    <option value="{$term->id}" {eq name="$term->id" value="$course->term->id"}selected="true"{else /}{/eq}>{$term->name}</option>
+                                    <option value="{$term->id}" {eq name="$term->id" value="$course->term_id"}selected="true"{else /}{/eq}>{$term->name}</option>
                                     {/volist}
                                 </select>
                             </div>
@@ -44,7 +44,7 @@
                                 <label class="control-label mb-1">授课教师</label>
                                 <select name="teacherId" class="form-control">
                                     {volist name="teachers" id="teacher"}
-                                    <option value="{$teacher->id}" {eq name="$teacher->id" value="$course->teacher->id"}selected="true"{else /}{/eq}>{$teacher->name}</option>
+                                    <option value="{$teacher->id}" {eq name="$teacher->id" value="$course->teacher_id"}selected="true"{else /}{/eq}>{$teacher->name}</option>
                                     {/volist}
                                 </select>
                             </div>
