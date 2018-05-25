@@ -2,14 +2,41 @@
 
 namespace app\index\controller;
 
+use app\index\service\CourseService;
+use app\index\service\SpecialtyService;
+use app\index\service\StudentService;
+use app\index\service\TeacherService;
+use app\index\service\TermService;
+use app\index\service\UserService;
 use app\index\utils\Status;
+use think\Controller;
+use think\Request;
 
 /**
  * 登录控制器
  * @author zhangxishuo
  */
-class LoginController extends BaseController
+class LoginController extends Controller
 {
+
+    protected $userService;
+    protected $termService;
+    protected $courseService;
+    protected $studentService;
+    protected $teacherService;
+    protected $specialtyService;
+
+    function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->userService = UserService::getInstance();
+        $this->termService = TermService::getInstance();
+        $this->courseService = CourseService::getInstance();
+        $this->studentService = StudentService::getInstance();
+        $this->teacherService = TeacherService::getInstance();
+        $this->specialtyService = SpecialtyService::getInstance();
+    }
+
     /**
      * 登录首页
      */

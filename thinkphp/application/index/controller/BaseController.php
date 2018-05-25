@@ -32,5 +32,10 @@ class BaseController extends Controller
         $this->studentService = StudentService::getInstance();
         $this->teacherService = TeacherService::getInstance();
         $this->specialtyService = SpecialtyService::getInstance();
+
+        $id = session('userId');
+        if (is_null($id)) {
+            $this->error('请先登录', 'login/index');
+        }
     }
 }
