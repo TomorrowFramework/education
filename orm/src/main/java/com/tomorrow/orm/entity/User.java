@@ -23,7 +23,4 @@ public class User {
 
     /* 权限 1:管理员 0:教师 -1:学生 */
     private Integer power;                    // 权限
-
-    /* 相关id 权限为管理员无此项 权限为教师对应教师id 权限为学生对应学生id */
-    private Long relationId;                  // 相关id
 }

@@ -6,3 +6,5 @@ spring:
     url: jdbc:mysql://${datasource.host:127.0.0.1}:${datasource.port:8889}/education?useUnicode=true&characterEncoding=utf-8
     username: ${datasource.username:root}
     password: ${datasource.password:root}
+server:
+  port: 8890

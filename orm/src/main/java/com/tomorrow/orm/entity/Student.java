@@ -18,4 +18,7 @@ public class Student {
 
     @ManyToOne
     private Specialty specialty;              // 专业
+
+    @OneToOne
+    private User user;                        // 登录账户
 }

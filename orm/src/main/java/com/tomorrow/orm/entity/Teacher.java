@@ -1,9 +1,6 @@
 package com.tomorrow.orm.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author zhangxishuo on 2018/4/30
@@ -18,4 +15,7 @@ public class Teacher {
     private Long id;                          // 教师id
 
     private String name;                      // 教师姓名
+
+    @OneToOne
+    private User user;                        // 登录账户
 }
