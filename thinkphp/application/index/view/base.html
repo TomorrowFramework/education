@@ -35,19 +35,13 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li {eq name=':request()->controller()' value="Index" } class="active" {/eq}><a href="{:url('index/index')}"> <i class="menu-icon fa fa-dashboard"></i>仪表板</a></li>
-                    {eq name="$user->power" value="1"}
                     <li {eq name=':request()->controller()' value="Course"} class="active" {/eq}><a href="{:url('course/index')}"> <i class="menu-icon fa fa-apple"></i>课程管理</a></li>
                     <li {eq name=':request()->controller()' value="Term"} class="active" {/eq}><a href="{:url('term/index')}"> <i class="menu-icon fa fa-apple"></i>学期管理</a></li>
                     <li {eq name=':request()->controller()' value="Specialty"} class="active" {/eq}><a href="{:url('specialty/index')}"> <i class="menu-icon fa fa-apple"></i>专业管理</a></li>
                     <li {eq name=':request()->controller()' value="Train"} class="active" {/eq}><a href="{:url('train/index')}"> <i class="menu-icon fa fa-apple"></i>培养计划管理</a></li>
-                    {/eq}
-                    {eq name="$user->power" value="0"}
                     <li><a href="widgets.html"> <i class="menu-icon fa fa-apple"></i>开设课程</a></li>
                     <li><a href="widgets.html"> <i class="menu-icon fa fa-apple"></i>我的课程</a></li>
-                    {/eq}
-                    {eq name="$user->power" value="-1"}
                     <li><a href="widgets.html"> <i class="menu-icon fa fa-apple"></i>培养计划</a></li>
-                    {/eq}
                 </ul>
             </div>
         </nav>

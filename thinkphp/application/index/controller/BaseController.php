@@ -32,8 +32,5 @@ class BaseController extends Controller
         $this->studentService = StudentService::getInstance();
         $this->teacherService = TeacherService::getInstance();
         $this->specialtyService = SpecialtyService::getInstance();
-
-        $currentUser = $this->userService->getCurrentLoginUser();
-        $this->assign('user', $currentUser);
     }
 }
