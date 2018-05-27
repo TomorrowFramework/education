@@ -37,5 +37,8 @@ class BaseController extends Controller
         if (is_null($id)) {
             $this->error('请先登录', 'login/index');
         }
+
+        $user = $this->userService->getCurrentLoginUser();
+        $this->assign('user', $user);
     }
 }
