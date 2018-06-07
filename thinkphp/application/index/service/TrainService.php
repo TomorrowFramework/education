@@ -55,6 +55,13 @@ class TrainService implements Service
     public function delete($id)
     {
         $train = Train::get($id);
+
+        $trainCourses = TrainCourse::where('train_id', '=', $id)->select();
+
+        foreach ($trainCourses as $trainCourse) {
+            $trainCourse->delete();
+        }
+        
         if (!$train->delete()) {
             return Status::getErrorResult('删除失败');
         } else {
