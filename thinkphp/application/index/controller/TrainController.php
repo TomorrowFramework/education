@@ -55,6 +55,12 @@ class TrainController extends BaseController
     }
 
     public function delete() {
-
+        $id = $this->request->param('id');
+        $result = $this->trainService->delete($id);
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'train/index');
+        } else {
+            $this->error($result['info']);
+        }
     }
 }

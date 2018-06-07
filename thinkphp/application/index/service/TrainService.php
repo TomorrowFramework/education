@@ -51,4 +51,14 @@ class TrainService implements Service
 
         return Status::getSuccessResult('保存成功');
     }
+
+    public function delete($id)
+    {
+        $train = Train::get($id);
+        if (!$train->delete()) {
+            return Status::getErrorResult('删除失败');
+        } else {
+            return Status::getSuccessResult("删除成功");
+        }
+    }
 }
