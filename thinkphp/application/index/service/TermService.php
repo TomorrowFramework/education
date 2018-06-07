@@ -80,4 +80,10 @@ class TermService implements Service
             }
         }
     }
+
+    public function getCurrentTerm()
+    {
+        $term = Term::where('is_current', '=', 1)->find();
+        return $term;
+    }
 }

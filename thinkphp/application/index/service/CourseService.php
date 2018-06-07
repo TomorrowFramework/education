@@ -8,6 +8,12 @@ use app\index\utils\Status;
 class CourseService implements Service
 {
     private static $instance;
+    private $termService;
+
+    function __construct()
+    {
+        $this->termService = TermService::getInstance();
+    }
 
     public static function getInstance()
     {
@@ -62,5 +68,13 @@ class CourseService implements Service
         } else {
             return Status::getSuccessResult("删除成功");
         }
+    }
+
+    public function getCurrentCourses()
+    {
+        $term = $this->termService->getCurrentTerm();
+        $termId = $term->id;
+        $courses = Course::where('term_id', '=', $termId)->select();
+        return $courses;
     }
 }
