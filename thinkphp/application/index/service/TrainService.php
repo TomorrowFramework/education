@@ -61,7 +61,7 @@ class TrainService implements Service
         foreach ($trainCourses as $trainCourse) {
             $trainCourse->delete();
         }
-        
+
         if (!$train->delete()) {
             return Status::getErrorResult('删除失败');
         } else {

@@ -3,6 +3,7 @@
 namespace app\index\service;
 
 use app\index\model\Course;
+use app\index\model\Teacher;
 use app\index\utils\Status;
 
 class CourseService implements Service
@@ -75,6 +76,13 @@ class CourseService implements Service
         $term = $this->termService->getCurrentTerm();
         $termId = $term->id;
         $courses = Course::where('term_id', '=', $termId)->select();
+        return $courses;
+    }
+
+    public function getCurrentCourseByUserId($userId)
+    {
+        $teacher = Teacher::where('user_id', '=', $userId)->find();
+        $courses = Course::where('teacher_id', '=', $teacher->id)->select();
         return $courses;
     }
 }

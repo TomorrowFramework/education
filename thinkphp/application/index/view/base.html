@@ -43,9 +43,10 @@
                     {/eq}
                     {eq name="$user->power" value="0"}
                     <li {eq name=':request()->controller()' value="CurrentTermCourses"} class="active" {/eq}><a href="{:url('currentTermCourses/index')}"> <i class="menu-icon fa fa-apple"></i>开设课程</a></li>
-                    <li><a href="widgets.html"> <i class="menu-icon fa fa-apple"></i>我的课程</a></li>
+                    <li {eq name=':request()->controller()' value="MyCourse"} class="active" {/eq}><a href="{:url('myCourse/index')}"> <i class="menu-icon fa fa-apple"></i>我的课程</a></li>
                     {/eq}
                     {eq name="$user->power" value="-1"}
+                    <li {eq name=':request()->controller()' value="CurrentTermCourses"} class="active" {/eq}><a href="{:url('currentTermCourses/index')}"> <i class="menu-icon fa fa-apple"></i>开设课程</a></li>
                     <li><a href="widgets.html"> <i class="menu-icon fa fa-apple"></i>培养计划</a></li>
                     {/eq}
                 </ul>
