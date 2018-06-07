@@ -21,11 +21,18 @@
                                 <th>序号</th>
                                 <th>名称</th>
                                 <th>专业</th>
-                                <th>课程</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
+                            {volist name="trains" id="train" key="key"}
+                            <tr>
+                                <td>{$key}</td>
+                                <td>{$train->name}</td>
+                                <td>{$train->specialty->name}</td>
+                                <td>编辑 删除</td>
+                            </tr>
+                            {/volist}
                             </tbody>
                         </table>
                     </div>

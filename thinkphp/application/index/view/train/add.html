@@ -1,0 +1,63 @@
+{extend name="base" /}
+
+{block name="title}
+培养计划管理
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">培养计划管理</strong>
+                    </div>
+                    <div class="card-body">
+                        {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+                        <form action="{:url($action, ['id' => $train->id])}" method="post">
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">培养计划名称</label>
+                                <input name="name" type="text" class="form-control valid" value="{$train->name}">
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="control-label mb-1">专业</label>
+                                <select name="specialtyId" class="form-control">
+                                    {volist name="specialtys" id="specialty"}
+                                    <option value="{$specialty->id}" {eq name="$specialty->id" value="$train->specialty_id"}selected="true"{else /}{/eq}>{$specialty->name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        所上课程
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline form-check">
+                                            {volist name="courses" id="course"}
+                                            <label>
+                                                <input type="checkbox" name="courseId[]" value="{$course->id}" class="form-check-input">{$course->name}
+                                            </label>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            {/volist}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                                    <span id="payment-button-amount">保存</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
