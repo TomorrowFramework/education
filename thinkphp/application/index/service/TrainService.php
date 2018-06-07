@@ -52,6 +52,40 @@ class TrainService implements Service
         return Status::getSuccessResult('保存成功');
     }
 
+    public function update($id, $name, $specialtyId, $courseIds) {
+        $train = Train::get($id);
+        $train->name = $name;
+        $train->specialty_id = $specialtyId;
+        if (false === $train->save()) {
+            return Status::getErrorResult('培养计划更新失败');
+        }
+
+        $trainCourses = TrainCourse::where('train_id', '=', $id)->select();
+
+        foreach ($trainCourses as $trainCourse) {
+            $trainCourse->delete();
+        }
+
+        if (!is_null($courseIds)) {
+            $datas = [];
+            foreach ($courseIds as $courseId) {
+                $data = [];
+                $data['train_id'] = $train->id;
+                $data['course_id'] = $courseId;
+                array_push($datas, $data);
+            }
+
+            if (!empty($datas)) {
+                $trainCourse = new TrainCourse();
+                if (!$trainCourse->saveAll($datas)) {
+                    return Status::getErrorResult('培养计划相关课程信息更新失败');
+                }
+            }
+        }
+
+        return Status::getSuccessResult('更新成功');
+    }
+
     public function delete($id)
     {
         $train = Train::get($id);

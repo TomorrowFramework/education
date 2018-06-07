@@ -39,7 +39,7 @@
                                         <div class="form-check-inline form-check">
                                             {volist name="courses" id="course"}
                                             <label>
-                                                <input type="checkbox" name="courseId[]" value="{$course->id}" class="form-check-input">{$course->name}
+                                                <input {eq name="$train->getIsChecked($course->id)" value="true"}checked="true"{else /}{/eq} type="checkbox" name="courseId[]" value="{$course->id}" class="form-check-input">{$course->name}
                                             </label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             {/volist}

@@ -22,4 +22,15 @@ class Train extends Model
         }
         return $courses;
     }
+
+    public function getIsChecked($id)
+    {
+        $courses = $this->getAllCourses();
+        foreach ($courses as $course) {
+            if ($course->id == $id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

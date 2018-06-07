@@ -47,11 +47,29 @@ class TrainController extends BaseController
     }
 
     public function edit() {
+        $id = $this->request->param('id');
+        $train = Train::get($id);
+        $specialtys = $this->specialtyService->getAllSpecialty();
+        $courses = $this->courseService->getAllCourse();
 
+        $this->assign('specialtys', $specialtys);
+        $this->assign('courses', $courses);
+        $this->assign('train', $train);
+        return $this->fetch('add');
     }
 
     public function update() {
+        $id = $this->request->param('id');
+        $name = $this->request->post('name');
+        $specialtyId = $this->request->post('specialtyId');
+        $courseIds = $this->request->post('courseId/a');
 
+        $result = $this->trainService->update($id, $name, $specialtyId, $courseIds);
+        if (Status::isSuccess($result['status'])) {
+            $this->success($result['info'], 'train/index');
+        } else {
+            $this->error($result['info']);
+        }
     }
 
     public function delete() {
