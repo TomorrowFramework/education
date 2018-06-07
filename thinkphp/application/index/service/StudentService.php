@@ -17,11 +17,12 @@ class StudentService implements Service
         return self::$instance;
     }
 
-    public function addStudent($name, $specialtyId)
+    public function addStudent($name, $specialtyId, $userId)
     {
         $student = new Student();
         $student->name = $name;
         $student->specialty_id = $specialtyId;
+        $student->user_id = $userId;
         $student->save();
         return $student;
     }

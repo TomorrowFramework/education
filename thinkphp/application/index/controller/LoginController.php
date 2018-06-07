@@ -90,23 +90,18 @@ class LoginController extends Controller
         $password   = $this->request->post('password');
         $name       = $this->request->post('name');
         $profession = $this->request->post('profession');
-        $id         = null;
+
+        $user = $this->userService->addUser($username, $password, $profession);
 
         if ($profession == 0) {
             // 教师
-            $teacher = $this->teacherService->addTeacher($name);
-            $id = $teacher->id;
+            $this->teacherService->addTeacher($name, $user->id);
         } else if ($profession == -1) {
             // 学生
             $specialtyId = $this->request->post('specialty');
-            $student = $this->studentService->addStudent($name, $specialtyId);
-            $id = $student->id;
+            $this->studentService->addStudent($name, $specialtyId, $user->id);
         }
 
-        $result = $this->userService->addUser($username, $password, $profession, $id);
-
-        if (Status::isSuccess($result['status'])) {
-            $this->success($result['info'], 'login/index');
-        }
+        $this->success('注册成功', 'login/index');
     }
 }

@@ -19,10 +19,11 @@ class TeacherService implements Service
         return self::$instance;
     }
 
-    public function addTeacher($name)
+    public function addTeacher($name, $userId)
     {
         $teacher = new Teacher();
         $teacher->name = $name;
+        $teacher->user_id = $userId;
         $teacher->save();
         return $teacher;
     }
