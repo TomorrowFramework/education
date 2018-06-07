@@ -21,6 +21,7 @@
                                 <th>序号</th>
                                 <th>名称</th>
                                 <th>专业</th>
+                                <th>课程</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -30,6 +31,11 @@
                                 <td>{$key}</td>
                                 <td>{$train->name}</td>
                                 <td>{$train->specialty->name}</td>
+                                <td>
+                                    {volist name="$train->getAllCourses()" id="course"}
+                                    <span>{$course->name}</span>
+                                    {/volist}
+                                </td>
                                 <td>
                                     <a class="btn btn-sm btn-danger" href="{:url('train/delete', ['id' => $train->id])}"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
                                 </td>
