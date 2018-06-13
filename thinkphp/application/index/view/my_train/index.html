@@ -1,0 +1,47 @@
+{extend name="base" /}
+
+{block name="title}
+培养计划
+{/block}
+
+{block name="content"}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">培养计划</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>名称</th>
+                                <th>专业</th>
+                                <th>课程</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="trains" id="train" key="key"}
+                            <tr>
+                                <td>{$key}</td>
+                                <td>{$train->name}</td>
+                                <td>{$train->specialty->name}</td>
+                                <td>
+                                    {volist name="$train->getAllCourses()" id="course"}
+                                    <span>{$course->name}</span>
+                                    {/volist}
+                                </td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

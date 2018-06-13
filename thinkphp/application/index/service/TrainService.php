@@ -2,6 +2,7 @@
 
 namespace app\index\service;
 
+use app\index\model\Student;
 use app\index\model\Train;
 use app\index\model\TrainCourse;
 use app\index\utils\Status;
@@ -101,5 +102,12 @@ class TrainService implements Service
         } else {
             return Status::getSuccessResult("删除成功");
         }
+    }
+
+    public function getTrainsByUserId($userId)
+    {
+        $student = Student::where('user_id', '=', $userId)->find();
+        $trains = Train::where('specialty_id', '=', $student->specialty_id)->select();
+        return $trains;
     }
 }
