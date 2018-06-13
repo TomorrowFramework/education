@@ -1,7 +1,9 @@
 package com.tomorrow.orm.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,6 +23,6 @@ public class Train {
     @ManyToOne
     private Specialty specialty;              // 专业
 
-    @OneToMany
-    private Set<Course> course = new HashSet<>();     // 培养计划课程
+    @ManyToMany
+    private Set<Course> course = new HashSet<>();
 }
