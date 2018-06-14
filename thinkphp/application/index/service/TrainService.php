@@ -29,8 +29,8 @@ class TrainService implements Service
         $train = new Train();
         $train->name = $name;
         $train->specialty_id = $specialtyId;
-        if (false === $train->save()) {
-            return Status::getErrorResult('培养计划保存失败');
+        if (false === $train->validate(true)->save()) {
+            return Status::getErrorResult($train->getError());
         }
 
         if (!is_null($courseIds)) {
@@ -57,8 +57,8 @@ class TrainService implements Service
         $train = Train::get($id);
         $train->name = $name;
         $train->specialty_id = $specialtyId;
-        if (false === $train->save()) {
-            return Status::getErrorResult('培养计划更新失败');
+        if (false === $train->validate(true)->save()) {
+            return Status::getErrorResult($train->getError());
         }
 
         $trainCourses = TrainCourse::where('train_id', '=', $id)->select();

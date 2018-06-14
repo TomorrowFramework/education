@@ -38,8 +38,8 @@ class CourseService implements Service
         $course->assessment = $assessment;
         $course->term_id = $termId;
         $course->teacher_id = $teacherId;
-        if (false === $course->save()) {
-            return Status::getErrorResult('保存失败');
+        if (false === $course->validate(true)->save()) {
+            return Status::getErrorResult($course->getError());
         } else {
             return Status::getSuccessResult('保存成功');
         }
@@ -54,8 +54,8 @@ class CourseService implements Service
         $course->assessment = $assessment;
         $course->term_id = $termId;
         $course->teacher_id = $teacherId;
-        if (false === $course->save()) {
-            return Status::getErrorResult('更新失败');
+        if (false === $course->validate(true)->save()) {
+            return Status::getErrorResult($course->getError());
         } else {
             return Status::getSuccessResult('更新成功');
         }

@@ -29,8 +29,8 @@ class SpecialtyService implements Service
     {
         $specialty = new Specialty();
         $specialty->name = $name;
-        if (false === $specialty->save()) {
-            return Status::getErrorResult('保存失败');
+        if (false === $specialty->validate(true)->save()) {
+            return Status::getErrorResult($specialty->getError());
         } else {
             return Status::getSuccessResult("保存成功");
         }
@@ -40,8 +40,8 @@ class SpecialtyService implements Service
     {
         $specialty = Specialty::get($id);
         $specialty->name = $name;
-        if (false === $specialty->save()) {
-            return Status::getErrorResult('更新失败');
+        if (false === $specialty->validate(true)->save()) {
+            return Status::getErrorResult($specialty->getError());
         } else {
             return Status::getSuccessResult("更新成功");
         }

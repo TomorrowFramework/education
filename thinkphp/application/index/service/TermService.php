@@ -28,8 +28,8 @@ class TermService implements Service
         $term->name = $name;
         $term->start_time = $startTime;
         $term->end_time = $endTime;
-        if (false === $term->save()) {
-            return Status::getErrorResult('保存失败');
+        if (false === $term->validate(true)->save()) {
+            return Status::getErrorResult($term->getError());
         } else {
             return Status::getSuccessResult('保存成功');
         }
@@ -41,8 +41,8 @@ class TermService implements Service
         $term->name = $name;
         $term->start_time = $startTime;
         $term->end_time = $endTime;
-        if (false === $term->save()) {
-            return Status::getErrorResult('更新失败');
+        if (false === $term->validate(true)->save()) {
+            return Status::getErrorResult($term->getError());
         } else {
             return Status::getSuccessResult('更新成功');
         }
